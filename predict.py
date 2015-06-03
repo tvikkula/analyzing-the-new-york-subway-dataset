@@ -86,13 +86,14 @@ def predictions_normal_eq(weather_turnstile):
     weather_turnstile['weekday'] = weather_turnstile['DATEn'] \
         .apply(lambda x: datetime.datetime.strptime(x, f).weekday())
     X = weather_turnstile[['rain', 'precipi', 'meantempi', 'meanpressurei', 'meanwindspdi']]
-    X = weather_turnstile[[]]
+ 
     dummy_units = pandas.get_dummies(weather_turnstile['UNIT'], prefix='unit')
     X = X.join(dummy_units)
     dummy_units = pandas.get_dummies(weather_turnstile['Hour'], prefix='Hour')
     X = X.join(dummy_units)
     dummy_units = pandas.get_dummies(weather_turnstile['weekday'], prefix='weekday')
     X = X.join(dummy_units)
+
     y = weather_turnstile['ENTRIESn_hourly']
     features = sm.add_constant(np.array(X))
     model = sm.OLS(np.array(y), features)
