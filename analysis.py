@@ -51,7 +51,7 @@ def plot_residuals(turnstile_weather, predictions):
     
     plt.figure()
 
-    binBoundaries = np.linspace(0,3000,30)
+    binBoundaries = np.linspace(0,5000,50)
 
     (turnstile_weather['ENTRIESn_hourly'] - predictions).hist(bins=binBoundaries)
 
