@@ -47,16 +47,12 @@ def plot_weekend_data(turnstile_weather):
 
     return plt
 
-def plot_residuals(turnstile_weather, predictions):
-    
+def plot_residuals(turnstile_weather, predictions):    
     plt.figure()
 
-    binBoundaries = np.linspace(0,5000,50)
-
-    (turnstile_weather['ENTRIESn_hourly'] - predictions).hist(bins=binBoundaries)
+    plt.plot(turnstile_weather['ENTRIESn_hourly'] - predictions)
 
     plt.title('Residual distributions in the regression model')
-    plt.xlabel('Residual amount')
-    plt.ylabel('Frequency')
+    plt.ylabel('Residuals')
     plt.legend()
     return plt
